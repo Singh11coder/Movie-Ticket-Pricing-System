@@ -1,0 +1,37 @@
+void movie_booking::show()//this function is for entering the number of movie running in hall
+{
+    int i,j;
+    p=(int*)(malloc(sizeof(int)));
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE NUMBER MOVIES RUNNING IN THE HALL\n";
+    cout<<"\t\t\t\t\t\t\t";
+    cin>>m;
+    (*p)=m;
+     ofstream fout;
+    fout.open("movie_test2.csv",ios::app);
+for(i=0;i<m;i++)//m is the total no of movies running in that hall
+{   fflush(stdin);
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE NAME OF MOVIE "<<i+1<<endl;
+    cout<<"\t\t\t\t\t\t\t";
+    getline(cin,name[i]);
+    fflush(stdin);
+    fout<<name[i]<<",";//movie name writing in file
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE NUMBER OF SHOWS OF MOVIE: "<<name[i]<<" IN A DAY : ";
+    cin>>nt;
+    str_tim[i]=nt;
+    //here a function is to be added to save the show timings
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE SHOW TIMINGS OF THE MOVIE : "<<name[i]<<endl;
+    for(j=0;j<nt;j++)
+    {   fflush(stdin);
+         cout<<"\t\t\t\t\t\t\t";
+        getline(cin,tim[i][j]);// this is the function for collecting the show timings
+        fout<<tim[i][j]<<",";
+
+    }
+    fout<<endl;
+
+}
+ fout.close();
+ //FILE HANDLING 100% CORRECT TILL HERE
+ m=m+13;//as already is csv file there 13 movies
+(*this).show_seat_frm_file();
+}
