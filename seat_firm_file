@@ -1,0 +1,118 @@
+void movie_booking::show_seat_frm_file()
+{int i=0,j;
+    system("clear");//after the input is being over the screen is cleared and data is displayed
+cout<<"\n\n\t\t\t\t\t\t\tTHE MOVIES RUNNING IN HALL ARE:\n\n\n";
+ifstream fin;
+fin.open("movie_test2.csv");
+if(dir_customer==0)
+    m=13;
+while(i<m)
+{
+     cout<<"\n\t\t\t\t\t\t\t";
+
+    getline(fin,name[i],',');
+    cout<<"MOVIE :\t"<<i+1<<"\t"<<name[i]<<endl<<endl;
+    cout<<"\t\t\t\t\t\t\t";
+    cout<<"THE TIMINGS OF THE MOVIE : "<<name[i]<<" :-  "<<endl;
+    int j=0;
+
+   getline(fin,tim[i][j],'\n');
+        cout<<"\t\t\t\t\t\t\t";
+        cout<<tim[i][j]<<endl<<endl;
+
+i++;//to access the different movie names
+}
+
+}
+void movie_booking::show()//this function is for entering the number of movie running in hall
+{
+    int i,j;
+    p=(int*)(malloc(sizeof(int)));
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE NUMBER MOVIES RUNNING IN THE HALL\n";
+    cout<<"\t\t\t\t\t\t\t";
+    cin>>m;
+    (*p)=m;
+     ofstream fout;
+    fout.open("movie_test2.csv",ios::app);
+for(i=0;i<m;i++)//m is the total no of movies running in that hall
+{   fflush(stdin);
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE NAME OF MOVIE "<<i+1<<endl;
+    cout<<"\t\t\t\t\t\t\t";
+    getline(cin,name[i]);
+    fflush(stdin);
+    fout<<name[i]<<",";//movie name writing in file
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE NUMBER OF SHOWS OF MOVIE: "<<name[i]<<" IN A DAY : ";
+    cin>>nt;
+    str_tim[i]=nt;
+    //here a function is to be added to save the show timings
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE SHOW TIMINGS OF THE MOVIE : "<<name[i]<<endl;
+    for(j=0;j<nt;j++)
+    {   fflush(stdin);
+         cout<<"\t\t\t\t\t\t\t";
+        getline(cin,tim[i][j]);// this is the function for collecting the show timings
+        fout<<tim[i][j]<<",";
+
+    }
+    fout<<endl;
+
+}
+ fout.close();
+ //FILE HANDLING 100% CORRECT TILL HERE
+ m=m+13;//as already is csv file there 13 movies
+(*this).show_seat_frm_file();
+}
+
+
+void movie_booking::seatdisp(int z,int wt)
+//1st argument to display the seats of that particular movie
+//2nd arg is for the particular movie time
+{
+    arg=z;
+    sti=wt;
+    int i,j;
+    char ch='A',st;
+    system("clear");
+    cout<<"\n\nCOST OF RECTILINEAR:Rs 500/-\n";
+      cout<<"COST OF SUPER DELUXE :Rs 200/-\n";
+    cout<<"COST OF  DELUXE :Rs 100/-\n";
+ifstream fin;
+fin.open("movie_test2.csv");
+   cout<<"\n\n\t\t\t\t\t\t\tBOOKED SEATS ARE MARKED WITH [x]\n\n";
+   for(i=0;i<arg-1;i++)
+   {
+    getline(fin,name[i],'\n');
+   }
+   getline(fin,name[i],',');
+   cout<<"\n\n\t\t\t\t\t\t\tTHIS IS THE SEAT MATRIX FOR MOVIE: "<<name[i]<<"\n\n";
+    fin.close();
+    for(i=0;i<13;i++)
+    {
+        ch='A';
+        ch=ch+i;
+        cout<<"\t";
+     for(j=0;j<18;j++)
+        {
+            if(ar[obn][arg][sti][i][j]==1)
+            cout<<"["<<" X"<<"]";
+            else
+            {
+                cout<<"["<<ch<<j+1<<"]";
+            }
+
+            cout<<" ";//1 white spaces given
+                      //the seat would be displayed in format[A1]
+
+            if(j==4||j==12)
+                cout<<"\t";
+
+        }
+        cout<<"\n\n";
+ if(i==12)
+    {
+        cout<<"\n\n\t\t\t\t\t\t SCREEN THIS WAY\n";
+        cout<<"\t______________________________________________________________________________________________________________";
+    }
+
+    }
+
+}
