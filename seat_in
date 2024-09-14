@@ -1,0 +1,37 @@
+void movie_booking::seatin(int z,int wt)//1st argument for the particular movie seat booking
+//2nd arg is for particular show time of particular movie
+{
+
+     int n,i;
+    arg=z;
+    sti=wt;
+    //cout<<"THE ARGUMENT IS nest="<<arg<<endl;
+     cout<<"\n\n\t\t\t\t\t\t\tENTER THE NUMBER OF SEATS TO BE BOOKED"<<endl;
+     ifstream fin;//this part is for retrieving moive name from file
+fin.open("movie_test2.csv");
+   cout<<"\n\n\t\t\t\t\t\t\tBOOKED SEATS ARE MARKED WITH [x]\n\n";
+
+   for(i=0;i<arg-1;i++)
+   {
+    getline(fin,name[i],'\n');
+   }
+   getline(fin,name[i],',');
+
+            cout<<"\t\t\t\t\t\t\t MOVIE NAME="<<name[i]<<endl;
+           fin.close();
+            cout<<"\t\t\t\t\t\t\t ";
+    cin>>n;
+    tkt_pr=n;
+       for(tkt=0;tkt<n;tkt++)//loop for booking the desired no. of tickets as input by user
+{
+     (*this).book(arg,sti,20);
+     cout<<"LOOP IS RUNNING\n";
+       system("clear");
+  (*this).seatdisp(arg,sti);
+
+}
+cout<<"\n\n\t\t\t\t\t\t\tPRESS ANY KEY TO CONTINUE\n";
+// CLEAR();
+ system("clear");
+
+}
