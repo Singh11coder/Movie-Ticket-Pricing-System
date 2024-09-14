@@ -1,0 +1,53 @@
+void movie_booking::seatdisp(int z,int wt)
+//1st argument to display the seats of that particular movie
+//2nd arg is for the particular movie time
+{
+    arg=z;
+    sti=wt;
+    int i,j;
+    char ch='A',st;
+    system("clear");
+    cout<<"\n\nCOST OF RECTILINEAR:Rs 500/-\n";
+      cout<<"COST OF SUPER DELUXE :Rs 200/-\n";
+    cout<<"COST OF  DELUXE :Rs 100/-\n";
+ifstream fin;
+fin.open("movie_test2.csv");
+   cout<<"\n\n\t\t\t\t\t\t\tBOOKED SEATS ARE MARKED WITH [x]\n\n";
+   for(i=0;i<arg-1;i++)
+   {
+    getline(fin,name[i],'\n');
+   }
+   getline(fin,name[i],',');
+   cout<<"\n\n\t\t\t\t\t\t\tTHIS IS THE SEAT MATRIX FOR MOVIE: "<<name[i]<<"\n\n";
+    fin.close();
+    for(i=0;i<13;i++)
+    {
+        ch='A';
+        ch=ch+i;
+        cout<<"\t";
+     for(j=0;j<18;j++)
+        {
+            if(ar[obn][arg][sti][i][j]==1)
+            cout<<"["<<" X"<<"]";
+            else
+            {
+                cout<<"["<<ch<<j+1<<"]";
+            }
+
+            cout<<" ";//1 white spaces given
+                      //the seat would be displayed in format[A1]
+
+            if(j==4||j==12)
+                cout<<"\t";
+
+        }
+        cout<<"\n\n";
+ if(i==12)
+    {
+        cout<<"\n\n\t\t\t\t\t\t SCREEN THIS WAY\n";
+        cout<<"\t______________________________________________________________________________________________________________";
+    }
+
+    }
+
+}
