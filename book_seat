@@ -1,0 +1,59 @@
+void movie_booking::book(int z,int wt ,int a)//first argument is for the movie number and 3rd argument for manager mode
+//2nd arg is for show time
+{int i,j,num,al,n,col,stor,arg;
+arg=z;
+sti=wt;
+    arg2=a;
+    if(arg2==100)
+    {
+      cout<<"\n\n\t\t\t\t\t\t\tADMIN ENTER THE SEATS WHICH WONT BE AVAILABLE FOR BOOKING\n";
+    }
+
+else
+{
+ cout<<"\n\n\t\t\t\t\t\t\tCUSTOMER BOOKING\n";
+}
+
+        (*this).seatdisp(arg,sti);
+    char ch='A',chr;
+    cout<<"\n\n\t\t\t\t\t\t\tENTER THE SEAT NUMBER\t";
+
+        cin>>chr>>col;
+        stor=chr-65;
+        col=col-1;
+
+        if(ar[obn][arg][sti][stor][col]==0)
+        {
+            ar[obn][arg][sti][stor][col]=1;
+
+            tkt_col[tkt]=col;
+            tkt_row[tkt]=stor;
+
+
+        }
+        else
+        {
+
+            while(ar[obn][arg][sti][stor][col]!=0)
+            {
+                if(arg2==100)
+                {
+                  cout<<"\n\n\t\t\t\t\t\t\tADMIN YOU HAVE ALREADY MARKED THIS SEAT AS BOOKED ENTER A NEW SEAT WHICH IS BOOKED\n";
+               cout<<"\t\t\t\t\t\t\t ";
+                }
+
+           else
+           {
+            cout<<"\n\n\t\t\t\t\t\t\tTHE SEAT YOU SELECTED IS ALREADY OCCUPIED ENTER A NEW SEAT\n";
+            cout<<"\t\t\t\t\t\t\t ";
+           }
+                cin>>chr>>col;
+                stor=chr-65;
+                col=col-1;
+            }
+            ar[obn][arg][sti][stor][col]=1;
+           tkt_col[tkt]=col;
+            tkt_row[tkt]=stor;
+        }
+
+}
