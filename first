@@ -1,0 +1,98 @@
+void movie_booking::first()
+{
+    int i;
+    char in='c',ind,cus;//cus is customer and ind is manager input
+    cout<<"\n\n\t\t\t\t\tTO ENTER MANAGER LOGIN PRESS 'o' or 'O' ELSE ANY OTHER KEY FOR CUSTOMER BOOKING\n";
+    cout<<"\t\t\t\t\t\t\t";
+    cin>>ind;
+    int pas_count=0;
+    if((ind=='o')||(ind=='O'))
+    {
+        while(pas_count<3)
+        {
+            (*this).pass_proctect();
+        if(pass=="KASAW")
+        {
+            (*this).manager();//the manager mode to set the number of seats available for booking
+            pas_count=3;
+        }
+
+        else
+        {
+        cout<<"PASSWORD ENTERED IS WRONG!!"<<" ATTEMPTS REMAINING = "<<2-pas_count<<" \n";//pas_count is to count no. of attempts left
+            pas_count++;
+        }
+
+    }
+    }
+
+    system("clear");
+    cout<<"\n\n\t\t\t\t\t\t\tDEAR CUSTOMER TO BOOK SEATS PRESS 'y' or 'Y' \n";
+    cout<<"\t\t\t\t\t\t\t";
+    cin>>cus;
+    //HERE I HAVE TO ADD THE CUSTOMER LOGIN FUNCTION
+     if((cus=='y')||(cus=='Y'))//the customer part starts here
+     {  cout<<"\n\t\t\t\t\t\t\tIF YOU ARE NEW CUSTOMER PRESS N/n TO SIGNUP\n";
+        cout<<"\t\t\t\t\t\t\t";
+        cin>>cus_in;
+        if(cus_in=='N'||cus_in=='n')
+        (*this).data_str();
+        else
+        {
+            cout<<"\n\t\t\t\t\t\t\tWELCOME EXISTING CUSTOMER!!!\n";
+           pas_rak=(*this).password_check();
+
+        }
+
+//cout<<"+++++++++++"<<pas_rak<<"--------"<<data_store<<endl;to check the values
+        cout<<"\t\t\t\t\t\t\t";
+        cout<<"PRESS ANYKEY TO CONTINUE\n";
+// CLEAR();
+ system("clear");
+         if(pas_rak!=0||data_store!=0)
+         {  cout<<"\n\n\t\t\t\t\t\tTHE SEATS AVAILABLE ARE:\n";
+                 while((in=='c')||(in=='C'))
+    {
+        cost=0;
+       (*this).show_seat_frm_file();
+            cout<<"\n\n\t\t\t\t\t\t\tENTER THE MOVIE NUMBER TO BOOK TICKET\n";
+            cout<<"\t\t\t\t\t\t\t";
+            cin>>arg;
+            ifstream fin;//this part is for retrieving moive name from file
+fin.open("movie_test2.csv");
+   for(i=0;i<arg-1;i++)
+   {
+    getline(fin,name[i],'\n');
+   }
+   getline(fin,name[i],',');
+    fin.close();
+             cout<<"\n\n\t\t\t\t\t\t\tCHOOSE THE NUMBER CORRENSPONDING TO TIMING TO BOOK TICKET FOR MOVIE :-"<<endl;
+
+            cout<<"\t\t\t\t\t\t\t"<<name[i];
+            cout<<"\t\t\t\t\t\t\t";
+            cin>>sti;
+
+            tkt_pnt=name[i];
+               // cout<<"THE ARGUMENT IS ="<<arg<<endl;
+            (*this).seatdisp(arg,sti);
+            (*this).seatin(arg,sti);
+            system("clear");
+            (*this).seatdisp(arg,sti);
+            /*HERE ANOTHER FUNCTION IS TO BE WRITTEN TO PRINT THE TICKETS*/
+            system("clear");
+
+            (*this).ticket_print();
+    cout<<"\n\n\t\t\t\t\t\t\tPRESS 'C' or 'c' IF U WANT TO BOOK SEAT AGAIN?\n";
+    cin>>in;
+
+
+
+    }
+         }
+
+else{cout<<"\n\n\t\t\t\t\t\t\t YOU PRESSED WRONG USER PASSWORD\n";
+    cout<<"\n\n\t\t\t\t\t\t\t PROGRAM TERMINATED!!!\n";
+        cout<<"\n\n\t\t\t\t\t\t\t YOU ENTERED WRONG PASSWORD";}
+
+     }
+}
